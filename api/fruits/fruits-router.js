@@ -35,4 +35,15 @@ router.post('/', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+
+  Fruit.remove(req.params.id)
+    .then(deletedFruit => {
+      res.json(deletedFruit);
+    })
+    .catch(err => {
+      res.status(500).json({ message: `Failed to delete fruit: ${err.message}` });
+    });
+})
+
 module.exports = router;
